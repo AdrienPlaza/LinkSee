@@ -1,20 +1,22 @@
 // ==UserScript==
-// @name         Extracteur de Liens Révélés
+// @name         LinkSee
 // @namespace    http://tampermonkey.net/
 // @version      1.0
-// @description  Affiche tous les liens associés et présents sur la page actuelle dans une interface propre.
-// @author       Fluxi
+// @description  A Tampermonkey userscript that extracts and displays all links from any webpage in a clean interface.
+// @author       AdrienPlaza
 // @match        http://*/*
 // @match        https://*/*
 // @grant        none
 // ==/UserScript==
 
-(function() {
+(function () {
     'use strict';
 
-    
+    // ================================================================
+    // FLOATING BUTTON
+    // ================================================================
     const mainBtn = document.createElement('button');
-    mainBtn.innerText = '🔗 Voir les liens';
+    mainBtn.innerText = '🔗 See links';
     mainBtn.style = `
         position: fixed;
         bottom: 20px;
@@ -32,7 +34,9 @@
     `;
     document.body.appendChild(mainBtn);
 
-   
+    // ================================================================
+    // PANEL
+    // ================================================================
     const panel = document.createElement('div');
     panel.style = `
         position: fixed;
@@ -50,7 +54,7 @@
         font-family: Arial, sans-serif;
     `;
 
-
+    // Header
     const header = document.createElement('div');
     header.style = `
         padding: 15px;
@@ -62,55 +66,83 @@
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
     `;
-    header.innerHTML = '<h3 style="margin:0; color:#333;">Liens trouvés sur la page</h3>';
+    header.innerHTML = '<h3 style="margin:0; color:#333;">Links found on this page</h3>';
 
     const closeBtn = document.createElement('button');
-    closeBtn.innerText = 'Fermer ✖';
+    closeBtn.innerText = 'Close ✖';
     closeBtn.style = 'padding: 5px 10px; cursor: pointer; background: #dc3545; color: white; border: none; border-radius: 3px;';
     closeBtn.onclick = () => panel.style.display = 'none';
     header.appendChild(closeBtn);
     panel.appendChild(header);
 
-  
+    // Content
     const content = document.createElement('div');
     content.style = 'padding: 15px; overflow-y: auto; flex-grow: 1;';
     panel.appendChild(content);
     document.body.appendChild(panel);
 
-  
-    mainBtn.onclick = function() {
-        
+    // ================================================================
+    // HELPERS
+    // ================================================================
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text == null ? '' : String(text);
+        return div.innerHTML;
+    }
+
+    // ================================================================
+    // MAIN LOGIC
+    // ================================================================
+    mainBtn.onclick = function () {
         content.innerHTML = '';
 
-        
         const links = document.querySelectorAll('a');
 
         if (links.length === 0) {
-            content.innerHTML = '<p style="color: #666;">Aucun lien trouvé sur cette page.</p>';
-        } else {
-            const list = document.createElement('ol');
-            list.style = 'margin: 0; padding-left: 20px;';
-
-            links.forEach(link => {
-                const href = link.href;
-                const text = link.innerText.trim() || '[Lien sans texte ou image]';
-
-             
-                if (href && href !== 'javascript:void(0);') {
-                    const listItem = document.createElement('li');
-                    listItem.style = 'margin-bottom: 8px; font-size: 14px;';
-
-                    listItem.innerHTML = `
-                        <strong>${text}</strong> -
-                        <a href="${href}" target="_blank" style="color: #0066cc; word-break: break-all;">${href}</a>
-                    `;
-                    list.appendChild(listItem);
-                }
-            });
-            content.appendChild(list);
+            content.innerHTML = '<p style="color: #666;">No link found on this page.</p>';
+            panel.style.display = 'flex';
+            return;
         }
 
-       
+        // Deduplicate by href
+        const seen = new Set();
+        const uniqueLinks = [];
+
+        links.forEach(link => {
+            const href = link.href;
+            if (!href || href === 'javascript:void(0);' || href === 'javascript:void(0)') return;
+            if (seen.has(href)) return;
+            seen.add(href);
+            uniqueLinks.push({ href, text: link.innerText.trim() });
+        });
+
+        if (uniqueLinks.length === 0) {
+            content.innerHTML = '<p style="color: #666;">No valid link found on this page.</p>';
+            panel.style.display = 'flex';
+            return;
+        }
+
+        // Header info
+        const info = document.createElement('p');
+        info.style = 'margin: 0 0 12px 0; color: #555; font-size: 13px;';
+        info.textContent = `${uniqueLinks.length} unique link${uniqueLinks.length > 1 ? 's' : ''} found.`;
+        content.appendChild(info);
+
+        // List
+        const list = document.createElement('ol');
+        list.style = 'margin: 0; padding-left: 20px;';
+
+        uniqueLinks.forEach(({ href, text }) => {
+            const listItem = document.createElement('li');
+            listItem.style = 'margin-bottom: 8px; font-size: 14px;';
+            listItem.innerHTML = `
+                <strong>${escapeHtml(text || '[Link without text or image]')}</strong> -
+                <a href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer" style="color: #0066cc; word-break: break-all;">${escapeHtml(href)}</a>
+            `;
+            list.appendChild(listItem);
+        });
+
+        content.appendChild(list);
         panel.style.display = 'flex';
     };
 })();
