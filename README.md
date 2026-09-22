@@ -37,7 +37,7 @@ Perfect for:
 2. Click on the **[→ Install the script](#-download)** link above. Tampermonkey should detect the userscript and offer to install it.
 3. (Manual method) Alternatively, open the [`LinkSee.user.js`](./LinkSee.user.js) file in this repo, click the **Raw** button, then paste the content into a new Tampermonkey script.
 4. Save with **Ctrl + S**.
-5. Visit **any website** — a blue **🔗 "Voir les liens"** button appears at the bottom-right of the screen.
+5. Visit **any website** — a blue **🔗 See links** button appears at the bottom-right of the screen.
 
 ---
 
@@ -45,9 +45,9 @@ Perfect for:
 
 | Action | How |
 |---|---|
-| Reveal all links | Click the **🔗 Voir les liens** button |
+| Reveal all links | Click the **🔗 See links** button |
 | Open a link | Click on the URL in the list (opens in a new tab) |
-| Close the panel | Click **Fermer ✖** in the panel header |
+| Close the panel | Click **Close ✖** in the panel header |
 | Reopen | Click the floating button again |
 
 ---
@@ -56,11 +56,14 @@ Perfect for:
 
 - 🔗 **Extracts all `<a>` tags** from the current page
 - 🎯 **Clean floating panel** with a list of clickable links
+- 🚫 **Automatic deduplication** — each unique URL appears only once
+- 📊 **Link counter** — shows how many unique links were found
 - 🌐 **Works on every website** (`http://` and `https://`)
 - 🖱️ **Floating button** always accessible at the bottom-right
 - 🔓 **Opens links in a new tab** so you never lose your current page
-- 🚫 **Skips empty links** and `javascript:void(0)` placeholders
+- 🛡️ **Skips empty links** and `javascript:void(0)` placeholders
 - 🪶 **Lightweight** — no external dependencies, no trackers
+- 🔒 **Safe** — all URLs are HTML-escaped before display
 
 ---
 
@@ -92,11 +95,14 @@ No. The script only runs when you click the button. It's completely passive unti
 **Is it safe?**
 Yes. The script only reads the links already present on the page. It doesn't send any data anywhere and doesn't modify the page content.
 
+**Does it remove duplicate links?**
+Yes. Since version 1.0, each unique URL is displayed only once.
+
 **Can I use it on mobile?**
 No. Tampermonkey on mobile doesn't reliably support userscripts.
 
 **Why don't I see some links?**
-The current version only extracts `<a>` tags. Other element types may be supported in the future.
+The current version only extracts `<a>` tags. Other element types (images, scripts, iframes) may be supported in the future.
 
 **Can I export the list of links?**
 Not yet. This feature may come in a future update.
