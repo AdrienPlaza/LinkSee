@@ -18,6 +18,22 @@
 
 ---
 
+## 📸 Preview
+
+### 🔗 The floating button
+
+<img width="113" height="89" alt="preview-button" src="https://github.com/user-attachments/assets/7e21e75e-45a7-40b6-9bdc-30b73e7ca5df" />
+
+*A discreet round button appears in the bottom-right corner of every page.*
+
+### 📋 The links panel
+
+<img width="1711" height="820" alt="preview-panel" src="https://github.com/user-attachments/assets/50815987-53bb-4c13-922a-92f9adb49f83" />
+
+*Click the button (or press `Alt+L`) to open the panel with search, filters, sort and copy features.*
+
+---
+
 ## 📖 About
 
 **LinkSee** is a userscript that adds a floating button to every webpage. Click it to instantly reveal **all links present on the page** in a clean, focused panel — with powerful tools to search, filter, sort, and copy them.
