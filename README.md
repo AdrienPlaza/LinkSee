@@ -10,9 +10,11 @@
 
 ## 📥 Download
 
-**[→ Install the script](https://github.com/AdrienPlaza/LinkSee/raw/refs/heads/main/LinkSee.user.js)**
+**[→ Install the script](https://github.com/AdrienPlaza/LinkSee/releases/download/v1.0/LinkSee.user.js)**
 
 *(Tampermonkey will automatically detect the userscript and offer to install it)*
+
+> 💡 If the link doesn't work, you can also manually install the script from the [`LinkSee.user.js`](./LinkSee.user.js) file in this repo.
 
 ---
 
@@ -108,7 +110,9 @@ The current version only extracts `<a>` tags. Other element types (images, scrip
 Not yet. This feature may come in a future update.
 
 **The install link doesn't work, what do I do?**
-Open the [`LinkSee.user.js`](./LinkSee.user.js) file in this repo, click the **Raw** button, copy the code, then paste it in a new Tampermonkey script.
+Two options:
+1. Use the **release link** in the Download section above.
+2. Open the [`LinkSee.user.js`](./LinkSee.user.js) file in this repo, click **Raw**, copy the code, then paste it in a new Tampermonkey script.
 
 ---
 
