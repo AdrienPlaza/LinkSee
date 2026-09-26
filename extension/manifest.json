@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "LinkSee",
+  "version": "1.2",
+  "description": "Extract and browse all links from any webpage - search, filter, copy and export.",
+  "author": "AdrienPlaza",
+  "homepage_url": "https://github.com/AdrienPlaza/LinkSee",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "LinkSee - Show all links (Alt+L)",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ]
+}
