@@ -18,6 +18,7 @@ Grab the `LinkSee.zip` file, extract it, and follow the [installation guide](#-i
 ---
 
 ## 📸 Preview
+
 <img width="74" height="75" alt="boutton" src="https://github.com/user-attachments/assets/b894feaf-a3a0-44c5-a39a-b14ad3256b6b" />
 
 *The button.*
@@ -44,15 +45,17 @@ Perfect for:
 
 ## ⚙️ Installation
 
-Since LinkSee is not yet on the Chrome Web Store, you install it manually in under 30 seconds.
+Since LinkSee is not yet on the Chrome Web Store, you install it manually in under 30 seconds. Just follow these 3 steps 👇
 
-### 1. Download the extension
+### Step 1 — Extract the ZIP
 
-- Go to the [**latest release**](https://github.com/AdrienPlaza/LinkSee/releases/latest)
-- Download **`LinkSee.zip`**
-- **Extract it** somewhere on your computer
+1. Go to the [**latest release**](https://github.com/AdrienPlaza/LinkSee/releases/latest)
+2. Download **`LinkSee.zip`**
+3. **Right-click** the ZIP → **Extract the file**
 
-You should end up with a folder containing:
+<img width="659" height="185" alt="step1-extract" src="https://github.com/user-attachments/assets/69b7f92b-76eb-4d33-8ce9-d1ce7bac4534" />
+
+You should end up with a folder named **`LinkSee/`** containing:
 ```
 manifest.json
 background.js
@@ -64,21 +67,28 @@ icons/
 README.md
 ```
 
-### 2. Load it in your browser
+### Step 2 — Drag and drop into your extensions
 
 1. Open your browser's extension page:
    - **Chrome**: `chrome://extensions/`
    - **Edge**: `edge://extensions/`
    - **Brave**: `brave://extensions/`
 2. Enable **Developer mode** (toggle in the top-right corner)
-3. Click **"Load unpacked"**
-4. Select the **folder containing `manifest.json`**
+3. **Drag and drop** the **`LinkSee` folder** anywhere on the page
 
-✅ LinkSee is now installed!
+<img width="1351" height="646" alt="step2-drag-and-drop" src="https://github.com/user-attachments/assets/a6f45d18-4ad6-4888-a156-90edb3759096" />
 
-### 3. Pin it (recommended)
+### Step 3 — Done! ✅
 
-Click the **🧩 puzzle piece** icon in your toolbar → find **LinkSee** → click the **📌 pin** icon.
+LinkSee is now installed. You can:
+
+- ✅ **Pin it** — click the 🧩 puzzle piece icon → click the 📌 pin next to LinkSee
+- ✅ **Use it** — visit any website, the 🔗 button appears bottom-right
+- ✅ **Shortcut** — press `Alt + L` on any page
+
+<img width="1918" height="989" alt="step3-done" src="https://github.com/user-attachments/assets/3e923be4-c59b-4eb6-a563-29331dcc06ae" />
+
+> 💡 **Note**: if you move or delete the `LinkSee` folder on your disk, Chrome will lose the extension. Keep it in a safe place.
 
 ---
 
